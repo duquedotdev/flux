@@ -12,17 +12,19 @@ export default class Home extends Component {
     };
   }
 
-  async componetDidMount() {
-    const response = await api.get('/products');
+  async componentDidMount() {
+    const response = await api.get('products');
     const data = response.data.map(product => ({
       ...product,
       priceFormatted: formatPrice(product.price),
     }));
+    console.log(data);
     this.setState({ products: data });
   }
 
   render() {
     const { products } = this.state;
+    console.log(products);
     return (
       <ProductList>
         {products.map(product => (
